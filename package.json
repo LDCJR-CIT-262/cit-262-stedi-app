@@ -1,38 +1,20 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
-
-export default function Login(Diego) {
-  const handleSend = async () => {
-    console.log(phoneNumber + ' Button was pressed');
-
-    const sendTextResponse = await fetch(
-      'https://dev.stedi.me/twofactorlogin/' + phoneNumber,
-      {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/text',
-        },
-      }
-    );
-
-    const sendTextResponseData = await sendTextResponse.text();
-
-    if (sendTextResponse.status !== 200) {
-      // Invalid phone number, send them to the signup page
-      await Alert.alert('Did you type your number correctly? ' + phoneNumber);
-    } else {
-      setLoggedInState(loggedInStates.LOGGING_IN);
-    }
-  };
-
-  return (
-    <View>
-      <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-        <Text style={{ color: 'white' }}>Send</Text>
-      </TouchableOpacity>
-      {loggedInState === 'LOGGING_IN' && (
-        <Text>Hello Diego</Text>
-      )}
-    </View>
-  );
+{
+  "name": "270-rest-api",
+  "version": "1.0.0",
+  "description": "CIT 270 API",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.18.2",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "md5": "^2.3.0",
+    "mocha": "^9.2.2",
+    "node-fetch": "^3.2.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Diego Mayson",
+  "license": "ISC"
 }
